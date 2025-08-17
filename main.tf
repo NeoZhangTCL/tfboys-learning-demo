@@ -29,3 +29,19 @@ module "ec2" {
   api_security_group_id = module.security.api_security_group_id
   common_tags           = local.common_tags
 }
+
+# RDS 模块 - PostgreSQL 数据库
+module "rds" {
+  source = "./modules/rds"
+
+  env                   = var.env
+  private_subnet_ids    = module.vpc.private_subnet_ids
+  db_security_group_id  = module.security.db_security_group_id
+  common_tags           = local.common_tags
+
+  # 数据库配置
+  database_name    = var.database_name
+  master_username  = var.master_username
+  master_password  = var.master_password
+  instance_class   = var.rds_instance_class
+}

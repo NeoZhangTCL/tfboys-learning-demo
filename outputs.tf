@@ -47,3 +47,25 @@ output "ssh_connection_command" {
   description = "SSH command to connect to the EC2 instance"
   value       = module.ec2.ssh_connection_command
 }
+
+# RDS 相关输出
+output "db_instance_endpoint" {
+  description = "RDS instance endpoint"
+  value       = module.rds.db_instance_endpoint
+}
+
+output "db_instance_port" {
+  description = "RDS instance port"
+  value       = module.rds.db_instance_port
+}
+
+output "database_name" {
+  description = "Name of the database"
+  value       = module.rds.database_name
+}
+
+output "db_connection_command" {
+  description = "Database connection command from EC2"
+  value       = "psql -h ${module.rds.db_instance_address} -p ${module.rds.db_instance_port} -U ${module.rds.master_username} -d ${module.rds.database_name}"
+  sensitive   = true
+}

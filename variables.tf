@@ -33,4 +33,34 @@ variable "private_subnet_cidrs" {
   type        = list(string)
 }
 
+# RDS 数据库配置变量
+variable "database_name" {
+  description = "Name of the database to create"
+  type        = string
+  default     = "appdb"
+}
+
+variable "master_username" {
+  description = "Master username for the database"
+  type        = string
+  default     = "dbadmin"
+}
+
+variable "master_password" {
+  description = "Master password for the database"
+  type        = string
+  sensitive   = true
+  
+  validation {
+    condition = length(var.master_password) >= 8
+    error_message = "Master password must be at least 8 characters long."
+  }
+}
+
+variable "rds_instance_class" {
+  description = "RDS instance class"
+  type        = string
+  default     = "db.t3.micro"
+}
+
 
