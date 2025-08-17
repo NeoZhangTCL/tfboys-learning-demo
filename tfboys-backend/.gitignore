@@ -1,0 +1,72 @@
+# Go build artifacts and binaries
+bootstrap
+services/*/bootstrap
+*.exe
+*.exe~
+*.dll
+*.so
+*.dylib
+
+# Go test and coverage files
+*.test
+*.out
+*.prof
+coverage.txt
+*.cover
+
+# Go mod cache and vendor
+vendor/
+go.sum.backup
+
+# IDE and editor files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.project
+.settings/
+
+# OS generated files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# Logs
+*.log
+logs/
+
+# Temporary files
+*.tmp
+*.temp
+.tmp/
+
+# Environment files
+.env
+.env.local
+.env.*.local
+
+# Archive and backup files
+*.tar.gz
+*.tgz
+*.rar
+*.zip
+*.backup
+*~
+
+# Debug and profiling
+debug
+*.pprof
+
+# Docker
+.dockerignore
+docker-compose.override.yml
+
+# Local development
+local/
+tmp/
+temp/

@@ -1,18 +1,19 @@
 # Terraform state files and backups
 *.tfstate
 *.tfstate.*
+*.tfstate.backup
+terraform.tfstate*
 
 # Terraform variable files containing sensitive data
 *.tfvars
 envs/*.tfvars
 environments/**/*.tfvars
 
-# Terraform plans
+# Terraform plans and cache
 *.tfplan
-
-# Terraform cache and plugins (but keep lock file)
+*.tfplan.*
 .terraform/
-# .terraform.lock.hcl should be committed for version consistency
+.terraform.lock.hcl.backup
 crash.log
 
 # Override files
@@ -24,8 +25,10 @@ override.tf.json
 # Lambda deployment packages
 *.zip
 modules/lambda/*.zip
+modules/lambda/users-lambda.zip
+modules/lambda/products-lambda.zip
 
-# Private keys and certificates - 重要：防止私钥被提交到版本控制
+# Private keys and certificates
 keys/*.pem
 keys/*.key
 *.pem
@@ -49,6 +52,7 @@ Thumbs.db
 
 # Logs
 *.log
+terraform.log
 
 # Temporary files
 *.tmp
@@ -59,12 +63,25 @@ Thumbs.db
 .env.local
 .env.*.local
 
-# Archive files that shouldn't be committed
+# Archive and backup files
 *.tar.gz
 *.tgz
-*.zip
 *.rar
-
-# Backup files
 *.backup
 *~
+
+# Terraform debugging
+.terraform.d/
+.terraformrc
+terraform.rc
+
+# Local development and testing
+local/
+tmp/
+temp/
+test-results/
+
+# AWS CLI and credentials (should never be committed)
+.aws/
+aws-credentials
+credentials
