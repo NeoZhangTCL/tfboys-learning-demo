@@ -63,4 +63,54 @@ variable "rds_instance_class" {
   default     = "db.t3.micro"
 }
 
+# Lambda 函数配置变量
+variable "lambda_timeout" {
+  description = "Lambda function timeout in seconds"
+  type        = number
+  default     = 10
+}
+
+variable "lambda_memory_size" {
+  description = "Lambda function memory size in MB"
+  type        = number
+  default     = 256
+}
+
+variable "lambda_log_retention_days" {
+  description = "Lambda CloudWatch logs retention in days"
+  type        = number
+  default     = 14
+}
+
+variable "enable_lambda_vpc_access" {
+  description = "Enable VPC access for Lambda functions to connect to RDS"
+  type        = bool
+  default     = true
+}
+
+# API Gateway 配置变量
+variable "api_stage_name" {
+  description = "API Gateway stage name"
+  type        = string
+  default     = "v1"
+}
+
+variable "api_quota_limit" {
+  description = "API quota limit per day"
+  type        = number
+  default     = 10000
+}
+
+variable "api_rate_limit" {
+  description = "API rate limit requests per second"
+  type        = number
+  default     = 100
+}
+
+variable "api_burst_limit" {
+  description = "API burst limit"
+  type        = number
+  default     = 200
+}
+
 

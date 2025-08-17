@@ -69,3 +69,41 @@ output "db_connection_command" {
   value       = "psql -h ${module.rds.db_instance_address} -p ${module.rds.db_instance_port} -U ${module.rds.master_username} -d ${module.rds.database_name}"
   sensitive   = true
 }
+
+# API Gateway 相关输出
+output "api_gateway_url" {
+  description = "Base URL of the API Gateway"
+  value       = module.api_gateway.api_gateway_url
+}
+
+output "api_key_value" {
+  description = "API Key for authentication"
+  value       = module.api_gateway.api_key_value
+  sensitive   = true
+}
+
+output "api_endpoints" {
+  description = "Available API endpoints"
+  value       = module.api_gateway.api_endpoints
+}
+
+# Lambda 相关输出  
+output "users_lambda_function_name" {
+  description = "Name of the Users Lambda function"
+  value       = module.lambda.users_lambda_function_name
+}
+
+output "products_lambda_function_name" {
+  description = "Name of the Products Lambda function"
+  value       = module.lambda.products_lambda_function_name
+}
+
+# 测试命令输出
+output "api_test_commands" {
+  description = "Test commands for the API"
+  value = {
+    get_users = "curl -H \"X-API-Key: $(terraform output -raw api_key_value)\" ${module.api_gateway.api_gateway_url}/users"
+    get_products = "curl -H \"X-API-Key: $(terraform output -raw api_key_value)\" ${module.api_gateway.api_gateway_url}/products"
+    create_user = "curl -X POST -H \"X-API-Key: $(terraform output -raw api_key_value)\" -H \"Content-Type: application/json\" -d '{\"name\":\"John Doe\",\"email\":\"john@example.com\"}' ${module.api_gateway.api_gateway_url}/users"
+  }
+}
