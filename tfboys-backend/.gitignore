@@ -1,3 +1,6 @@
+# Backend-specific gitignore rules  
+# Global rules are handled in the root .gitignore
+
 # Go build artifacts and binaries
 bootstrap
 services/*/bootstrap
@@ -18,55 +21,13 @@ coverage.txt
 vendor/
 go.sum.backup
 
-# IDE and editor files
-.vscode/
-.idea/
-*.swp
-*.swo
-*~
-.project
-.settings/
-
-# OS generated files
-.DS_Store
-.DS_Store?
-._*
-.Spotlight-V100
-.Trashes
-ehthumbs.db
-Thumbs.db
-
-# Logs
-*.log
-logs/
-
-# Temporary files
-*.tmp
-*.temp
-.tmp/
-
-# Environment files
-.env
-.env.local
-.env.*.local
-
-# Archive and backup files
-*.tar.gz
-*.tgz
-*.rar
-*.zip
-*.backup
-*~
-
-# Debug and profiling
+# Debug and profiling (Go-specific)
 debug
 *.pprof
 
-# Docker
+# Docker files (backend-specific)
 .dockerignore
 docker-compose.override.yml
 
-# Local development
-local/
-tmp/
-temp/
+# Backend-specific logs directory
+logs/

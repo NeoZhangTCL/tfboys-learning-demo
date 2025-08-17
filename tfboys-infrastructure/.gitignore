@@ -1,18 +1,14 @@
-# Terraform state files and backups
-*.tfstate
-*.tfstate.*
-*.tfstate.backup
-terraform.tfstate*
+# Infrastructure-specific gitignore rules
+# Global rules are handled in the root .gitignore
 
 # Terraform variable files containing sensitive data
 *.tfvars
 envs/*.tfvars
 environments/**/*.tfvars
 
-# Terraform plans and cache
+# Terraform plans and specific cache files
 *.tfplan
 *.tfplan.*
-.terraform/
 .terraform.lock.hcl.backup
 crash.log
 
@@ -34,51 +30,15 @@ keys/*.key
 *.pem
 *.key
 
-# IDE and editor files
-.vscode/
-.idea/
-*.swp
-*.swo
-*~
-
-# OS generated files
-.DS_Store
-.DS_Store?
-._*
-.Spotlight-V100
-.Trashes
-ehthumbs.db
-Thumbs.db
-
-# Logs
-*.log
+# Terraform-specific logs
 terraform.log
 
-# Temporary files
-*.tmp
-*.temp
-
-# Environment files
-.env
-.env.local
-.env.*.local
-
-# Archive and backup files
-*.tar.gz
-*.tgz
-*.rar
-*.backup
-*~
-
-# Terraform debugging
+# Terraform debugging and configuration
 .terraform.d/
 .terraformrc
 terraform.rc
 
-# Local development and testing
-local/
-tmp/
-temp/
+# Local development and testing (infrastructure-specific)
 test-results/
 
 # AWS CLI and credentials (should never be committed)
