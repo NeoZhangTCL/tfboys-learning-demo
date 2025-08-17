@@ -1,40 +1,49 @@
+# 根目录输出 - 调用各模块的输出
+
+# VPC 相关输出
 output "vpc_id" {
-  value = aws_vpc.main.id
+  description = "ID of the VPC"
+  value       = module.vpc.vpc_id
 }
 
 output "public_subnet_ids" {
-  value = [for s in aws_subnet.public : s.id]
+  description = "List of IDs of the public subnets"
+  value       = module.vpc.public_subnet_ids
 }
 
 output "private_subnet_ids" {
-  value = [for s in aws_subnet.private : s.id]
+  description = "List of IDs of the private subnets"
+  value       = module.vpc.private_subnet_ids
 }
 
+# 安全组相关输出
 output "api_security_group_id" {
-  value = aws_security_group.api.id
+  description = "ID of the API security group"
+  value       = module.security.api_security_group_id
 }
 
 output "db_security_group_id" {
-  value = aws_security_group.db.id
+  description = "ID of the DB security group"
+  value       = module.security.db_security_group_id
 }
 
 # EC2 和密钥对相关输出
 output "api_server_public_ip" {
-  value       = aws_instance.api_server.public_ip
   description = "Public IP address of the API server instance"
+  value       = module.ec2.api_server_public_ip
 }
 
 output "key_pair_name" {
-  value       = aws_key_pair.main.key_name
   description = "Name of the created key pair"
+  value       = module.ec2.key_pair_name
 }
 
 output "private_key_path" {
-  value       = local_file.private_key.filename
   description = "Path to the private key file"
+  value       = module.ec2.private_key_path
 }
 
 output "ssh_connection_command" {
-  value       = "ssh -i ${local_file.private_key.filename} ec2-user@${aws_instance.api_server.public_ip}"
   description = "SSH command to connect to the EC2 instance"
+  value       = module.ec2.ssh_connection_command
 }

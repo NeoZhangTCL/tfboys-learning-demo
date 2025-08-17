@@ -1,26 +1,12 @@
+# VPC 模块变量
 variable "env" {
   description = "Environment name (e.g., dev, prod)"
-  type        = string
-
-  validation {
-    condition     = can(regex("^(dev|staging|prod)$", var.env))
-    error_message = "Environment must be one of: dev, staging, prod."
-  }
-}
-
-variable "aws_region" {
-  description = "AWS region"
   type        = string
 }
 
 variable "vpc_cidr" {
   description = "CIDR for the VPC"
   type        = string
-
-  validation {
-    condition     = can(cidrhost(var.vpc_cidr, 0))
-    error_message = "VPC CIDR must be a valid IPv4 CIDR block."
-  }
 }
 
 variable "public_subnet_cidrs" {
@@ -33,4 +19,8 @@ variable "private_subnet_cidrs" {
   type        = list(string)
 }
 
-
+variable "common_tags" {
+  description = "Common tags to apply to all resources"
+  type        = map(string)
+  default     = {}
+}
