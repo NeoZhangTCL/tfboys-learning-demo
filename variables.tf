@@ -22,8 +22,3 @@ variable "private_subnet_cidrs" {
   description = "List of CIDRs for private subnets"
   type        = list(string)
 }
-
-variable "key_pair_name" {
-  description = "Name of an existing AWS Key Pair to SSH into EC2"
-  type        = string
-}

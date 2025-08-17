@@ -1,33 +1,31 @@
-# Terraform Files
+# Terraform
+*.tfstate
+*.tfstate.*
+*.tfvars
+*.tfplan
 .terraform/
 .terraform.lock.hcl
-terraform.tfstate
-terraform.tfstate.*
-
-# Terraform variable files (contain sensitive data)
-*.tfvars
-*.tfvars.json
-
-# Crash log files
 crash.log
-crash.*.log
-
-# Override files
 override.tf
 override.tf.json
 *_override.tf
 *_override.tf.json
 
-# CLI configuration files
-.terraformrc
-terraform.rc
+# Private keys - 重要：防止私钥被提交到版本控制
+keys/
+*.pem
+*.key
 
-# macOS
-.DS_Store
-
-# Editor files
+# IDE
+.vscode/
+.idea/
 *.swp
 *.swo
 *~
-.vscode/
-.idea/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
